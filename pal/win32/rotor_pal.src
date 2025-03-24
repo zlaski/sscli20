@@ -54,9 +54,11 @@ EXPORTS
 #else
 
 #if DBG
- #if _MSC_VER == 1400
-  #define _MSVCRT MSVCR80D
- #elif _MSC_VER == 1310
+ #if _MSC_VER == 1600
+  #define _MSVCRT MSVCR100D
+ #elif _MSC_VER == 1500
+  #define _MSVCRT MSVCR90D
+ #elif _MSC_VER == 1400
   #define _MSVCRT MSVCR71D
  #elif _MSC_VER == 1300
   #define _MSVCRT MSVCR70D
@@ -64,9 +66,11 @@ EXPORTS
   #error Unknown MSC version
  #endif
 #else
- #if _MSC_VER == 1400
-  #define _MSVCRT MSVCR80
- #elif _MSC_VER == 1310
+ #if _MSC_VER == 1600
+  #define _MSVCRT MSVCR100D
+ #elif _MSC_VER == 1500
+  #define _MSVCRT MSVCR90D
+ #elif _MSC_VER == 1400
   #define _MSVCRT MSVCR71
  #elif _MSC_VER == 1300
   #define _MSVCRT MSVCR70

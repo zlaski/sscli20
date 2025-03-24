@@ -49,10 +49,6 @@ LINKER_NOREF=1
 
 !if "$(FEATURE_PAL)" != "1" || "$(ROTOR_TOOLSET)" == "MSVC"
 
-# Enable 64-bit warnings
-USER_C_FLAGS=$(USER_C_FLAGS) -Wp64
-#USER_C_FLAGS=$(USER_C_FLAGS) /EP
-
 !if !$(FREEBUILD)
 # add runtime checks in debug build
 # USER_C_FLAGS=$(USER_C_FLAGS) -RTCs -RTCc
@@ -65,7 +61,7 @@ MSC_OPTIMIZATION=/O2
 !if "$(FEATURE_PAL)" != "1" || "$(ROTOR_TOOLSET_VERSION)" >= "80"
 MSC_OPTIMIZATION=$(MSC_OPTIMIZATION) /fp:precise
 !else
-MSC_OPTIMIZATION=$(MSC_OPTIMIZATION) /Op
+MSC_OPTIMIZATION=$(MSC_OPTIMIZATION)
 !endif
 
 !endif

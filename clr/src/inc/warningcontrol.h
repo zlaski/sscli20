@@ -28,6 +28,7 @@
 #pragma warning(disable :4010)   // "single-line comment contains line-continuation character"
 #pragma warning(error   :4013)   // 'function' undefined - assuming extern returning int
 #pragma warning(disable :4022)   // "'%s' : pointer mismatch for actual parameter %d"
+#pragma warning(disable :4028)	 // formal parameter different from declaration
 #pragma warning(disable :4047)   // "'%$L' : '%$T' differs in levels of indirection from '%$T'"
 #pragma warning(disable :4053)   // "one void operand for '?:'"
 #pragma warning(disable :4056)   // "overflow in floating-point constant arithmetic"

@@ -199,6 +199,7 @@ INCLUDES        = $(CLRBASE)\src\inc\$(O_PHASE2);$(INCLUDES)
 INCLUDES        = $(CLRBASE)\src\inc\$(O_PHASE1);$(INCLUDES)
 INCLUDES        = $(CLRBASE)\src\inc\$(O_PHASE0);$(INCLUDES)
 INCLUDES        = $(CLRBASE)\src\inc;$(INCLUDES)
+INCLUDES        = $(NDPDIR)\prebuilt\idl;$(INCLUDES)
 INCLUDES        = $(INCLUDES);$(VCTOOLS_INC_PATH)
 
 

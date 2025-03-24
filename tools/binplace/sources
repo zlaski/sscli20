@@ -24,7 +24,7 @@ USE_MSVCRT=1
 
 MSC_WARNING_LEVEL = /W3 /WX
 
-SUBSYSTEM_VERSION=4.00
+SUBSYSTEM_VERSION=6.00
 
 SOURCES=binplace.c 
 
@@ -40,4 +40,4 @@ UMENTRYABS=mainCRTStartupWildcard
 
 ROTOR_USE_NOLIBS=1
 LINKLIBS=$(LINKLIBS)                   \
-        $(PAL_LIB_PATH)\rotor_pal.lib
+        $(PAL_LIB_PATH)\rotor_pal.lib 

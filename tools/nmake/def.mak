@@ -141,7 +141,7 @@ CFLAGS	= $(CFLAGS) -DWIN95
 !endif
 
 !if	"$(PROCESSOR_ARCHITECTURE)" == "IA64"
-CFLAGS	= $(CFLAGS) -Wp64
+CFLAGS	= $(CFLAGS)
 !endif
 
 
