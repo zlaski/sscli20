@@ -1716,7 +1716,7 @@ typedef enum NGenHintEnum
     NGenEager               = 0x0001, // NGen at install time
     NGenLazy                = 0x0002, // NGen after install time
     NGenNever               = 0x0003  // Assembly should not be ngened      
-};
+} NGenHintEnum;
 
 typedef enum LoadHintEnum
 {
@@ -1725,7 +1725,7 @@ typedef enum LoadHintEnum
     LoadAlways              = 0x0001, // Dependency is always loaded
     LoadSometimes           = 0x0002, // Dependency is sometimes loaded
     LoadNever               = 0x0003  // Dependency is never loaded
-};
+} LoadHintEnum;
 
 #define NGEN_TYPE_W                             L"System.Runtime.CompilerServices.NGenAttribute"
 #define NGEN_TYPE                               "System.Runtime.CompilerServices.NGenAttribute"
@@ -1771,7 +1771,7 @@ typedef enum NativeTypeArrayFlags
 {
     ntaSizeParamIndexSpecified = 0x0001,
     ntaReserved                = 0xfffe      // All the reserved bits.
-};
+} NativeTypeArrayFlags;
 
 //
 // Opaque types for security properties and values.

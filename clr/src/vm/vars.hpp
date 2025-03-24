@@ -601,6 +601,7 @@ inline bool CORDebuggerAttached()
 
 #else
 
+#define CORDebuggerAttached() (0)
 #define CORDebuggerEnCMode(dwDebuggerBits) (0)
 
 #endif // DEBUGGING_SUPPORTED

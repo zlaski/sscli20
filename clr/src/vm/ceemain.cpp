@@ -1601,7 +1601,7 @@ static BOOL CacheCommandLine(__in LPWSTR pCmdLine, __in_opt LPWSTR* ArgvW)
         WCHAR wszCurDir[MAX_PATH];
         if (!WszGetCurrentDirectory(MAX_PATH, wszCurDir))
             return FALSE;
-        if (PathCombine(wszModuleName, wszCurDir, ArgvW[0]) == NULL)
+        if (PathCombineW(wszModuleName, wszCurDir, ArgvW[0]) == NULL)
             return FALSE;
 
         size_t len = wcslen(wszModuleName);

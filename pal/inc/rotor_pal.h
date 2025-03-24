@@ -107,13 +107,13 @@ typedef unsigned short wchar_t;
 #define _M_PPC 100
 #endif
 
+#endif // !_MSC_VER
+
 #if defined(_M_IX86) && !defined(_X86_)
 #define _X86_
 #elif defined(_M_PPC) && !defined(_PPC_)
 #define _PPC_
 #endif
-
-#endif // !_MSC_VER
 
 #ifdef _MSC_VER
 
@@ -122,6 +122,8 @@ typedef unsigned short wchar_t;
 #else
 #define UNALIGNED
 #endif
+
+#define register
 
 #else // _MSC_VER
 

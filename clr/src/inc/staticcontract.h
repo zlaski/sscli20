@@ -48,12 +48,12 @@
 #define ANNOTATION_IGNORE_THROW             __annotation(L"THROWS", L"NOTHROW")
 #define ANNOTATION_IGNORE_FAULT             __annotation(L"FAULT", L"FORBID_FAULT")
 #define ANNOTATION_IGNORE_TRIGGER           __annotation(L"GC_TRIGGERS", L"GC_NOTRIGGER")
-#define ANNOTATION_VIOLATION(violationmask) __annotation(L"VIOLATION(" L#violationmask L")")
-#define ANNOTATION_UNCHECKED(thecheck)      __annotation(L"UNCHECKED(" L#thecheck L")")
+#define ANNOTATION_VIOLATION(violationmask) __annotation(L"VIOLATION(" #violationmask L")")
+#define ANNOTATION_UNCHECKED(thecheck)      __annotation(L"UNCHECKED(" #thecheck L")")
 #define ANNOTATION_FN_HOST_NOCALLS          __annotation(L"HOST_NOCALLS")
 #define ANNOTATION_FN_HOST_CALLS            __annotation(L"HOST_CALLS")
 
-#define ANNOTATION_SO_PROBE_BEGIN(probeAmount) __annotation(L"SO_PROBE_BEGIN(" L#probeAmount L")")
+#define ANNOTATION_SO_PROBE_BEGIN(probeAmount) __annotation(L"SO_PROBE_BEGIN(" #probeAmount L")")
 #define ANNOTATION_SO_PROBE_END             __annotation(L"SO_PROBE_END")
 
 #define ANNOTATION_SO_TOLERANT              __annotation(L"GS_RO")

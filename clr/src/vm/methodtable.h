@@ -99,7 +99,7 @@ class   EEClassLayoutInfo;
 // the interface map for C would list I and J
 // the interface map for C<int> would list I<int> and J<string>
 //
-typedef struct
+struct InterfaceInfo_t
 {
     enum {
         interface_declared_on_class = 0x1,
@@ -108,10 +108,10 @@ typedef struct
 
     MethodTable* m_pMethodTable;        // Method table of the interface
     WORD         m_wFlags;
-    
+
 private:
     WORD         m_wStartSlot;          // starting slot of interface in vtable
-    
+
 public:
     WORD         GetInteropStartSlot()
     {
@@ -134,7 +134,7 @@ public:
         return (m_wFlags & interface_implemented_on_parent);
     }
 
-} InterfaceInfo_t;
+};
 
 typedef DPTR(InterfaceInfo_t) PTR_InterfaceInfo;
 
@@ -312,7 +312,7 @@ typedef DPTR(ThreadAndContextStaticsBucket) PTR_ThreadAndContextStaticsBucket;
 // so that we can layout a read-only MethodTable with a pointer
 // to the writeable parts of the MethodTable in an ngen image
 //
-typedef struct // MethodTableWriteableData;
+struct MethodTableWriteableData
 {
     enum
     {
@@ -386,7 +386,7 @@ public:
         FastInterlockOr((ULONG*)&m_dwFlags, enum_flag_CriticalTypePrepared);
     }
 
-} MethodTableWriteableData;
+};
 
 typedef DPTR(MethodTableWriteableData) PTR_MethodTableWriteableData;
 
