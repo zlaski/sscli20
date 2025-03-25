@@ -16,7 +16,7 @@
 //  *** NOTE:  If you make changes to this file, propagate the changes to
 //             jithelp.s in this directory
 //
-//  This file uses AT&T i386 syntax. Search web for "AT&T Syntax versus Intel Syntax"
+//  This file uses AT&T i386 syntax. Search web for `AT&T Syntax versus Intel Syntax`
 //  to get document describing differences between the AT&T i386 syntax and the Intel
 //  syntax used by masm.
 
@@ -96,7 +96,7 @@ name: ;
 
 #define WriteBarrierHelper(rg)                                                \
         .align 4                                                            ; \
-        /* The entry point is the fully 'safe' one in which we check if */  ; \
+        /* The entry point is the fully `safe` one in which we check if */  ; \
         /* EDX (the REF begin updated) is actually in the GC heap */        ; \
 ASMFUNC(STDMANGLE(JIT_CheckedWriteBarrier##rg,0))                           ; \
         /* check in the REF being updated is in the GC heap */              ; \
@@ -375,7 +375,7 @@ ASMFUNC(STDMANGLE(JIT_TailCall,0))
 //  ebp+0                   saved ebp
 //  ebp-c                   saved ebx, esi, edi (if have callee saved regs = 1)
 //
-//                          other stuff (local vars) in the jitted callers' frame
+//                          other stuff (local vars) in the jitted callers frame
 //
 //  esp+20+4*nNewStackArgs  <- end of argument source
 //   ...                       ...
@@ -530,7 +530,7 @@ ArgumentsCopied:
         mov     %eax, %esp
 
         ret                 // Will branch to targetAddr.  This matches the
-                            // "call" done by JITted code, keeping the
+                            // `call` done by JITted code, keeping the
                             // call-ret count balanced.
 
         //---------------------------------------------------------------------
@@ -664,7 +664,7 @@ VSDArgumentsCopied:
         pop     %eax
 
         ret                 // Will branch to targetAddr.  This matches the
-                            // "call" done by JITted code, keeping the
+                            // `call` done by JITted code, keeping the
                             // call-ret count balanced.
 
         // a fake virtual stub dispatch register indirect callsite
@@ -749,7 +749,7 @@ MonEnterRetryThinLock:
         // Fetch the object header dword
         movl    -SyncBlockIndexOffset_ASM(ARGUMENT_REG1), %eax
 
-        // Check whether we have the "thin lock" layout, the lock is free and the spin lock bit not set
+        // Check whether we have the `thin lock` layout, the lock is free and the spin lock bit not set
         test    IMM(SBLK_COMBINED_MASK_ASM), %eax
         jnz     MonEnterNeedMoreTests
 
@@ -766,14 +766,14 @@ MonEnterRetryThinLock:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonEnterPrepareToWaitThinLock
 
-        // Everything went fine and we're done
+        // Everything went fine and we are done
         addl    $1, Thread_m_dwLockCount(%esi)
         popl    %esi
         popl    %ebx
         ret
 
 MonEnterNeedMoreTests:
-        // Ok, it's not the simple case - find out which case it is
+        // Ok, it is not the simple case - find out which case it is
         testl   IMM(BIT_SBLK_IS_HASH_OR_SYNCBLKINDEX_ASM), %eax
         jnz     MonEnterHaveHashOrSyncBlockIndex
 
@@ -781,14 +781,14 @@ MonEnterNeedMoreTests:
         testl   IMM(BIT_SBLK_SPIN_LOCK_ASM), %eax
         jnz     MonEnterPrepareToWaitThinLock
 
-        // Here we know we have the "thin lock" layout, but the lock is not free.
+        // Here we know we have the `thin lock` layout, but the lock is not free.
         // It could still be the recursion case - compare the thread id to check
         movl    %eax, %edx
         andl    IMM(SBLK_MASK_LOCK_THREADID_ASM), %edx
         cmpl    Thread_m_ThreadId(%esi), %edx
         jne     MonEnterPrepareToWaitThinLock
 
-        // Ok, the thread id matches, it's the recursion case.
+        // Ok, the thread id matches, it is the recursion case.
         // Bump up the recursion level and check for overflow
         leal    SBLK_LOCK_RECLEVEL_INC_ASM(%eax), %edx
         testl   IMM(SBLK_MASK_LOCK_RECLEVEL_ASM), %edx
@@ -800,7 +800,7 @@ MonEnterNeedMoreTests:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonEnterRetryHelperThinLock
 
-        // Everything went fine and we're done
+        // Everything went fine and we are done
         popl    %esi
         popl    %ebx
         ret
@@ -855,7 +855,7 @@ MonEnterRetrySyncBlock:
         testl   %eax, %eax
         jne     MonEnterHaveWaiters
 
-        // Common case, lock isn't held and there are no waiters. Attempt to
+        // Common case, lock is not held and there are no waiters. Attempt to
         // gain ownership ourselves.
         movl    $1, ARGUMENT_REG1
         nop
@@ -877,7 +877,7 @@ MonEnterRetrySyncBlock:
         popl    %ebx
         ret
 
-        // It's possible to get here with waiters but no lock held, but in this
+        // It is possible to get here with waiters but no lock held, but in this
         // case a signal is about to be fired which will wake up a waiter. So
         // for fairness sake we should wait too.
         // Check first for recursive lock attempts on the same thread.
@@ -956,7 +956,7 @@ ASMFUNC(STDMANGLE(JIT_MonTryEnter,12))
         cmpl    $-1, ARGUMENT_REG2
         jl      MonTryEnterFramedLockHelper
         
-        // Get the thread right away, we'll need it in any case
+        // Get the thread right away, we will need it in any case
         call    *CMANGLE(GetThread)
         movl    %eax, %esi
 
@@ -971,11 +971,11 @@ MonTryEnterRetryThinLock:
         // Get the header dword and check its layout
         movl    -SyncBlockIndexOffset_ASM(ARGUMENT_REG1), %eax
 
-        // Check whether we have the "thin lock" layout, the lock is free and the spin lock bit not set
+        // Check whether we have the `thin lock` layout, the lock is free and the spin lock bit not set
         test    IMM(SBLK_COMBINED_MASK_ASM), %eax
         jnz     MonTryEnterNeedMoreTests
 
-        // Ok, everything is fine. Fetch the thread id and make sure it's small enough for thin locks
+        // Ok, everything is fine. Fetch the thread id and make sure it is small enough for thin locks
         movl    Thread_m_ThreadId(%esi), %edx
         cmpl    IMM(SBLK_MASK_LOCK_THREADID_ASM), %edx
         ja      MonTryEnterFramedLockHelper
@@ -986,7 +986,7 @@ MonTryEnterRetryThinLock:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonTryEnterRetryHelperThinLock
 
-        // Got the lock - everything is fine"
+        // Got the lock - everything is fine
         addl    $1, Thread_m_dwLockCount(%esi)
         popl    %esi
 
@@ -1000,7 +1000,7 @@ MonTryEnterRetryThinLock:
         ret
 
 MonTryEnterNeedMoreTests: 
-        // Ok, it's not the simple case - find out which case it is
+        // Ok, it is not the simple case - find out which case it is
         testl   IMM(BIT_SBLK_IS_HASH_OR_SYNCBLKINDEX_ASM), %eax
         jnz     MonTryEnterHaveSyncBlockIndexOrHash
 
@@ -1013,7 +1013,7 @@ MonTryEnterNeedMoreTests:
         cmpl    Thread_m_ThreadId(%esi), %edx
         jne     MonTryEnterPrepareToWaitThinLock
 
-        // Ok, the thread id matches, it's the recursion case.
+        // Ok, the thread id matches, it is the recursion case.
         // Bump up the recursion level and check for overflow
         leal    SBLK_LOCK_RECLEVEL_INC_ASM(%eax), %edx
         testl   IMM(SBLK_MASK_LOCK_RECLEVEL_ASM), %edx
@@ -1025,7 +1025,7 @@ MonTryEnterNeedMoreTests:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonTryEnterRetryHelperThinLock
 
-        // Everything went fine and we're done
+        // Everything went fine and we are done
         popl    %esi
         popl    %ebx
 
@@ -1087,10 +1087,10 @@ MonTryEnterRetrySyncBlock:
         jne     MonTryEnterHaveWaiters
 
         // We need another scratch register for what follows, so save EBX now so
-        // we can use it for that purpose."
+        // we can use it for that purpose.
         pushl   %ebx
 
-        // Common case, lock isn't held and there are no waiters. Attempt to
+        // Common case, lock is not held and there are no waiters. Attempt to
         // gain ownership ourselves.
         movl    $1, %ebx
         nop
@@ -1120,7 +1120,7 @@ MonTryEnterRetrySyncBlock:
         movl    $1, %eax
         ret
 
-        // It's possible to get here with waiters but no lock held, but in this
+        // It is possible to get here with waiters but no lock held, but in this
         // case a signal is about to be fired which will wake up a waiter. So
         // for fairness sake we should wait too.
         // Check first for recursive lock attempts on the same thread.
@@ -1208,17 +1208,17 @@ MonExitRetryThinLock:
         test    IMM(BIT_SBLK_IS_HASH_OR_SYNCBLKINDEX_SPIN_LOCK_ASM), %eax
         jnz     MonExitNeedMoreTests
 
-        // Ok, we have a "thin lock" layout - check whether the thread id matches
+        // Ok, we have a `thin lock` layout - check whether the thread id matches
         movl    %eax, %edx
         andl    IMM(SBLK_MASK_LOCK_THREADID_ASM), %edx
         cmpl    Thread_m_ThreadId(%esi), %edx
         jne     MonExitFramedLockHelper
 
-        // Check the recursion level"
+        // Check the recursion level
         testl   IMM(SBLK_MASK_LOCK_RECLEVEL_ASM), %eax
         jne     MonExitDecRecursionLevel
 
-        // It's zero - we're leaving the lock.
+        // It is zero - we are leaving the lock.
         // So try to put back a zero thread id.
         // edx and eax match in the thread id bits, and edx is zero elsewhere, so the xor is sufficient
         xorl    %eax, %edx
@@ -1226,7 +1226,7 @@ MonExitRetryThinLock:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonExitRetryHelperThinLock
 
-        // We're done
+        // We are done
         subl    $1, Thread_m_dwLockCount(%esi)
         popl    %esi
         ret
@@ -1237,7 +1237,7 @@ MonExitDecRecursionLevel:
         cmpxchgl    %edx, -SyncBlockIndexOffset_ASM(ARGUMENT_REG1)
         jnz     MonExitRetryHelperThinLock
 
-        // We're done
+        // We are done
         popl    %esi
         ret
 
@@ -1325,7 +1325,7 @@ MonEnterStaticRetry:
         testl   %eax, %eax
         jne     MonEnterStaticHaveWaiters
 
-        // Common case, lock isn't held and there are no waiters. Attempt to
+        // Common case, lock is not held and there are no waiters. Attempt to
         // gain ownership ourselves.
         movl    $1, %ebx
         nop
@@ -1347,7 +1347,7 @@ MonEnterStaticRetry:
 #endif // defined(MON_DEBUG) && defined(TRACK_SYNC)
         ret
 
-        // It's possible to get here with waiters but no lock held, but in this
+        // It is possible to get here with waiters but no lock held, but in this
         // case a signal is about to be fired which will wake up a waiter. So
         // for fairness sake we should wait too.
         // Check first for recursive lock attempts on the same thread.
