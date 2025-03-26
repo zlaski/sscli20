@@ -347,7 +347,7 @@ WCHAR* Verifier::GetErrorMsg(
                                              NULL,
                                              hrError,
                                              MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-                                             (LPTSTR) win32Msg,
+                                             win32Msg,
                                              VER_SMALL_BUF_LEN - 1,
                                              NULL );
 

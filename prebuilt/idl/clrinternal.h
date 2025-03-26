@@ -198,7 +198,7 @@ EXTERN_C const IID IID_IExecutionEngine;
         virtual MUTEX_COOKIE STDMETHODCALLTYPE ClrCreateMutex( 
             /* [in] */ LPSECURITY_ATTRIBUTES lpMutexAttributes,
             /* [in] */ BOOL bInitialOwner,
-            /* [in] */ LPCTSTR lpName) = 0;
+            /* [in] */ LPCWSTR lpName) = 0;
         
         virtual DWORD STDMETHODCALLTYPE ClrWaitForMutex( 
             /* [in] */ MUTEX_COOKIE mutex,

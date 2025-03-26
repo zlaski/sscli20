@@ -2331,7 +2331,7 @@ BOOL SecurityConfig::GetVIUserDirectory(__out_ecount(bufferCount) __out_z WCHAR*
     BOOL retval = FALSE;
 
 
-    if (!PAL_GetUserConfigurationDirectory(buffer, (UINT)bufferCount))
+    if (!PAL_GetUserConfigurationDirectoryW(buffer, (UINT)bufferCount))
         goto CLEANUP;
 
 

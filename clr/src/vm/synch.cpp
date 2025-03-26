@@ -997,7 +997,7 @@ DWORD CLRSemaphore::Wait(DWORD dwMilliseconds, BOOL alertable)
     }
 }
 
-void CLRMutex::Create(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCTSTR lpName)
+void CLRMutex::Create(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName)
 {
     CONTRACTL
     {

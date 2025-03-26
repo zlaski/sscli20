@@ -3420,7 +3420,7 @@ static void TryConstructUnhandledExceptionArgs(OBJECTREF *pThrowable,
         {
             ObjToArgSlot(*pOutEventArgs),
             ObjToArgSlot(*pThrowable),
-            isTerminating
+            (ARG_SLOT)isTerminating
         };
 
         ctor.Call(args);

@@ -852,7 +852,7 @@ HRESULT STDMETHODCALLTYPE RuntimeOSHandle(HCORMODULE hHandle, HMODULE* hModule)
     return S_OK;
 }
 
-HRESULT RuntimeGetAssemblyStrongNameHashForModule(HCORMODULE   hModule,
+HRESULT __stdcall RuntimeGetAssemblyStrongNameHashForModule(HCORMODULE   hModule,
                                                   IMetaDataImport * pMDImport,
                                                   BYTE        *pbSNHash,
                                                   DWORD       *pcbSNHash)

@@ -487,19 +487,19 @@ int Thread::GetThreadPriority()
 /*
     After SuspendThread returns, can the suspended thread continue to execute code in user mode?
 
-    [David Cutler] The suspended thread cannot execute any more user code, but it might be currently ìrunningî
+    [David Cutler] The suspended thread cannot execute any more user code, but it might be currently ‚Äúrunning‚Äù
     on a logical processor whose other logical processor is currently actually executing another thread.
     In this case the target thread will not suspend until the hardware switches back to executing instructions
-    on its logical processor. In this case even the memory barrier would not necessarily work ñ a better solution
+    on its logical processor. In this case even the memory barrier would not necessarily work ‚Äì a better solution
     would be to use interlocked operations on the variable itself.
 
     After SuspendThread returns, does the store buffer of the CPU for the suspended thread still need to drain?
 
-    Historically, weíve assumed that the answer to both questions is No.  But on one 4/8 hyper-threaded machine
-    running Win2K3 SP1 build 1421, weíve seen two stress failures where SuspendThread returns while writes seem to still be in flight.
+    Historically, we‚Äôve assumed that the answer to both questions is No.  But on one 4/8 hyper-threaded machine
+    running Win2K3 SP1 build 1421, we‚Äôve seen two stress failures where SuspendThread returns while writes seem to still be in flight.
 
     Usually after we suspend a thread, we then call GetThreadContext.  This seems to guarantee consistency.
-    But there are places we would like to avoid GetThreadContext, if itís safe and legal.
+    But there are places we would like to avoid GetThreadContext, if it‚Äôs safe and legal.
 
     [David Cutler] Get context delivers a APC to the target thread and waits on an event that will be set
     when the target thread has delivered its context.
@@ -510,10 +510,10 @@ int Thread::GetThreadPriority()
 // Message from Neill Clift
 /*
     What SuspendThread does is insert an APC block into a target thread and request an inter-processor interrupt to
-    do the APC interrupt. It doesnít wait till the thread actually enters some state or the interrupt has been serviced.
+    do the APC interrupt. It doesn‚Äôt wait till the thread actually enters some state or the interrupt has been serviced.
 
     I took a quick look at the APIC spec in the Intel manuals this morning. Writing to the APIC posts a message on a bus.
-    Processors accept messages and presumably queue the s/w interrupts at this time. We donít wait for this acceptance
+    Processors accept messages and presumably queue the s/w interrupts at this time. We don‚Äôt wait for this acceptance
     when we send the IPI so at least on APIC machines when you suspend a thread it continues to execute code for some short time
     after the routine returns. We use other mechanisms for IPI and so it could work differently on different h/w.
 
@@ -9479,7 +9479,7 @@ void __cdecl CommonTripThread()
 // event. This case does not call CommonTripThread because we don't want
 // to give the thread the chance to exit or otherwise suspend itself.
 //
-VOID OnDebuggerTripThread(void)
+VOID __stdcall OnDebuggerTripThread(void)
 {
     CONTRACTL {
         NOTHROW;

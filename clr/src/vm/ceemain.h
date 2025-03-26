@@ -142,7 +142,7 @@ private:
 
     MUTEX_COOKIE STDMETHODCALLTYPE ClrCreateMutex(LPSECURITY_ATTRIBUTES lpMutexAttributes,
                                                   BOOL bInitialOwner,
-                                                  LPCTSTR lpName);
+                                                  LPCWSTR lpName);
     void STDMETHODCALLTYPE ClrCloseMutex(MUTEX_COOKIE mutex);
     BOOL STDMETHODCALLTYPE ClrReleaseMutex(MUTEX_COOKIE mutex);
     DWORD STDMETHODCALLTYPE ClrWaitForMutex(MUTEX_COOKIE mutex,

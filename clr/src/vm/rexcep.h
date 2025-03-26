@@ -333,7 +333,7 @@ DEFINE_EXCEPTION_17HRESULTS(g_IONS,            FileNotFoundException,           
 
 DEFINE_EXCEPTION_SIMPLE(g_SystemNS,           FormatException,                false,  COR_E_FORMAT)
 
-DEFINE_EXCEPTION_2HRESULTS(g_SystemNS,        IndexOutOfRangeException,       false, COR_E_INDEXOUTOFRANGE, 0x800a0009 /*Subscript out of range*/)
+DEFINE_EXCEPTION_2HRESULTS(g_SystemNS,        IndexOutOfRangeException,       false, COR_E_INDEXOUTOFRANGE, STD_CTL_SCODE(9) /*Subscript out of range*/)
 DEFINE_EXCEPTION_SIMPLE(g_SystemNS,           InsufficientMemoryException,    false,  COR_E_INSUFFICIENTMEMORY)
 DEFINE_EXCEPTION_SIMPLE(g_SystemNS,           InvalidCastException,           false,  COR_E_INVALIDCAST)
 DEFINE_EXCEPTION_SIMPLE(g_ReflectionNS,       InvalidFilterCriteriaException, false,  COR_E_INVALIDFILTERCRITERIA)

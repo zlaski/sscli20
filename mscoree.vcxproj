@@ -11,15 +11,15 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>clr\src\inc;clr\src\classlibnative\inc;palrt\inc;pal\inc;prebuilt\idl;clr\src\vm;clr\src\vm\i386;$(IntDir);clr\src\debug\inc\i386;$(Install_IncludePath);$(UCRT_IncludePath);$(UM_IncludePath);$(KIT_SHARED_IncludePath)\;$(KM_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>clr\src\inc;clr\src\classlibnative\inc;palrt\inc;pal\inc;prebuilt\idl;clr\src\vm;clr\src\vm\i386;clr\src\md\inc;clr\src\fusion\inc;$(IntDir);clr\src\debug\inc\i386;$(Install_IncludePath);$(UCRT_IncludePath);$(UM_IncludePath);$(KIT_SHARED_IncludePath)\;$(KM_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SyncCThrow</ExceptionHandling>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SyncCThrow</ExceptionHandling>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SyncCThrow</ExceptionHandling>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SyncCThrow</ExceptionHandling>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DEBUGGING_SUPPORTED;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">DEBUGGING_SUPPORTED;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DEBUGGING_SUPPORTED;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">DEBUGGING_SUPPORTED;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GC_SMP;PROFILING_SUPPORTED;DEBUGGING_SUPPORTED;ENABLE_PERF_COUNTERS;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GC_SMP;PROFILING_SUPPORTED;DEBUGGING_SUPPORTED;ENABLE_PERF_COUNTERS;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GC_SMP;PROFILING_SUPPORTED;DEBUGGING_SUPPORTED;ENABLE_PERF_COUNTERS;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GC_SMP;PROFILING_SUPPORTED;DEBUGGING_SUPPORTED;ENABLE_PERF_COUNTERS;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

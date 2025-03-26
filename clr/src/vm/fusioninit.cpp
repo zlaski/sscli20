@@ -92,7 +92,7 @@ static DWORD GetConfigDWORD(LPCWSTR wzName, DWORD dwDefault)
     WCHAR wzValue[16];
     DWORD dwValue;
 
-    if (PAL_FetchConfigurationString(TRUE, wzName, wzValue, sizeof(wzValue) / sizeof(WCHAR)))
+    if (PAL_FetchConfigurationStringW(TRUE, wzName, wzValue, sizeof(wzValue) / sizeof(WCHAR)))
     {
         LPWSTR pEnd;
         dwValue = wcstol(wzValue, &pEnd, 16);   // treat it has hex
@@ -176,8 +176,8 @@ HRESULT STDMETHODCALLTYPE InitializeFusion()
     g_lcid = lcid;
 
 
-    PAL_GetPALDirectory(g_FusionDllPath, MAX_PATH);
-    hr = StringCbCat(g_FusionDllPath, sizeof(g_FusionDllPath), MSCOREE_SHIM_W);
+    PAL_GetPALDirectoryW(g_FusionDllPath, MAX_PATH);
+    hr = StringCbCatW(g_FusionDllPath, sizeof(g_FusionDllPath), MSCOREE_SHIM_W);
     if (FAILED(hr)) {
         goto Exit;
     }
@@ -188,7 +188,7 @@ HRESULT STDMETHODCALLTYPE InitializeFusion()
     }
 
 
-#define _GetConfigDWORD(name, default) GetConfigDWORD(name, default)
+#define _GetConfigDWORD(name, default) GetConfigDWORD(L"" name, default)
 
 
     hr = SetRootCachePath(pwzBindingConfigAssemblyStorePath);
@@ -246,7 +246,7 @@ HRESULT SetupDevOverride(LPCWSTR pwzBindingConfigDevOverridePath)
     g_dwDevOverrideEnable = _GetConfigDWORD(REG_VAL_DEVOVERRIDE_ENABLE, 0);
 
     if (g_dwDevOverrideEnable != 0) {
-        if (PAL_FetchConfigurationString(TRUE, REG_VAL_DEVOVERRIDE_PATH, g_wzGlobalDevOverridePath, MAX_PATH) &&
+        if (PAL_FetchConfigurationStringW(TRUE, REG_VAL_DEVOVERRIDE_PATH, g_wzGlobalDevOverridePath, MAX_PATH) &&
             lstrlenW(g_wzGlobalDevOverridePath)) {
             g_dwDevOverrideFlags |= DEVOVERRIDE_GLOBAL;
         }

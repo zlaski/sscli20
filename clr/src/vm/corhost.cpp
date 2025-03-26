@@ -5091,7 +5091,7 @@ static inline CLRMutex *CookieToCLRMutex(MUTEX_COOKIE cookie)
 
 MUTEX_COOKIE STDMETHODCALLTYPE CExecutionEngine::ClrCreateMutex(LPSECURITY_ATTRIBUTES lpMutexAttributes,
                                                                 BOOL bInitialOwner,
-                                                                LPCTSTR lpName)
+                                                                LPCWSTR lpName)
 {
     CONTRACTL
     {

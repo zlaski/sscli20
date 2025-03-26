@@ -11163,7 +11163,7 @@ void EEClass::DebugDumpGCDesc(LPCUTF8 pszClassName, BOOL debug)
 // for X86.
 
 //*******************************************************************************
-extern "C" ARG_SLOT CallDescrWorkerWithHandler(
+extern "C" ARG_SLOT __stdcall CallDescrWorkerWithHandler(
                 LPVOID                      pSrcEnd,
                 UINT32                      numStackSlots,
 #ifdef CALLDESCR_ARGREGS

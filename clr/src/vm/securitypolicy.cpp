@@ -471,7 +471,7 @@ OBJECTREF SecurityPolicy::ResolvePolicy(OBJECTREF evidence, OBJECTREF reqdPset, 
     args[6] = (ARG_SLOT) checkExecutionPermission;
 
     {
-        // Elevate thread’s allowed loading level.  This can cause load failures if assemblies loaded from this point on require
+        // Elevate threadâ€™s allowed loading level.  This can cause load failures if assemblies loaded from this point on require
         // any assemblies currently being loaded.
        OVERRIDE_LOAD_LEVEL_LIMIT(FILE_ACTIVE);
         // call policy resolution routine in managed code
@@ -741,7 +741,7 @@ size_t SecurityPolicy::GetLongPathNameHelper( const WCHAR* wszShortPath, __inout
         MODE_ANY;
     } CONTRACTL_END;
 
-    DWORD size = ::GetLongPathName(wszShortPath, wszBuffer, cchBuffer);
+    DWORD size = ::GetLongPathNameW(wszShortPath, wszBuffer, cchBuffer);
 
     if (size == 0)
     {
@@ -772,7 +772,7 @@ size_t SecurityPolicy::GetLongPathNameHelper( const WCHAR* wszShortPath, __inout
             wszIntermediateBuffer[index-1] = L'\0';
 
 
-            size = ::GetLongPathName(wszIntermediateBuffer, wszBuffer, MAX_PATH);
+            size = ::GetLongPathNameW(wszIntermediateBuffer, wszBuffer, MAX_PATH);
 
             if (size != 0)
             {
@@ -973,7 +973,7 @@ GetSecuritySettings(DWORD* pdwState)
     DWORD val;
     WCHAR temp[16];
 
-    if (PAL_FetchConfigurationString(TRUE, gszGlobalPolicySettings, temp, sizeof(temp) / sizeof(WCHAR)))
+    if (PAL_FetchConfigurationStringW(TRUE, gszGlobalPolicySettings, temp, sizeof(temp) / sizeof(WCHAR)))
     {
         LPWSTR endPtr;
         val = wcstol(temp, &endPtr, 16);         // treat it has hex
@@ -998,13 +998,13 @@ SetSecuritySettings(DWORD dwState)
         // treat it has hex
         if (dwState == DEFAULT_GLOBAL_POLICY)
         {
-            PAL_SetConfigurationString(TRUE, gszGlobalPolicySettings, L"");
+            PAL_SetConfigurationStringW(TRUE, gszGlobalPolicySettings, L"");
         }
         else
         {
             _snwprintf(temp, sizeof(temp) / sizeof(WCHAR), L"%08x", dwState);
 
-            if (!PAL_SetConfigurationString(TRUE, gszGlobalPolicySettings, temp))
+            if (!PAL_SetConfigurationStringW(TRUE, gszGlobalPolicySettings, temp))
             {
                 CORTHROW(HRESULT_FROM_GetLastError());
             }

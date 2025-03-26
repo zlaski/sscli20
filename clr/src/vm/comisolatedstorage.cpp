@@ -412,7 +412,7 @@ void COMIsolatedStorageFile::GetRootDirInternal(
     path[cPath] = 0;
 
     // Get roaming or local App Data locations
-    if (!PAL_GetUserConfigurationDirectory(path, cPath))
+    if (!PAL_GetUserConfigurationDirectoryW(path, cPath))
         COMIsolatedStorage::ThrowISS(ISS_E_CREATE_DIR);
 
     len = (ULONG)wcslen(path);

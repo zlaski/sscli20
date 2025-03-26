@@ -1429,7 +1429,7 @@ void InitJITHelpers1()
 
     // All monitor helpers should fit into one page.
     // If you hit this assert on retail build, there is most likely problem with BBT script.
-    _ASSERTE_ALL_BUILDS((BYTE*)JIT_MonLast - (BYTE*)JIT_MonStart < PAGE_SIZE);
+    _ASSERTE_ALL_BUILDS(((BYTE*)JIT_MonLast - (BYTE*)JIT_MonStart) < PAGE_SIZE);
 
     // Handle the case that we are on an MP machine.
     if (g_SystemInfo.dwNumberOfProcessors != 1)
@@ -1528,7 +1528,7 @@ void InitJITHelpers1()
 
     // All write barrier helpers should fit into one page.
     // If you hit this assert on retail build, there is most likely problem with BBT script.
-    _ASSERTE_ALL_BUILDS((BYTE*)JIT_WriteBarrierLast - (BYTE*)JIT_WriteBarrierStart < PAGE_SIZE);
+    _ASSERTE_ALL_BUILDS(((BYTE*)JIT_WriteBarrierLast - (BYTE*)JIT_WriteBarrierStart) < PAGE_SIZE);
 
     // Make sure we do this last because when we revert the virtual protection above, we could 
     // inadvertently revert the virtual protection for this piece of memory as well.

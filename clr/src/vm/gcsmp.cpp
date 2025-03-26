@@ -2576,7 +2576,7 @@ void gc_heap::verify_card_table ()
                     );
             if (need_card_p && !found_card_p)
             {
-                printf ("Card not set, x = [%p:%p, %p:%p[",
+                printf ("Card not set, x = [%0zX:%p, %0zX:%p[",
                         card_of (x), x,
                         card_of (x+Align(s)), x+Align(s));
                 FATAL_GC_ERROR();
@@ -4637,7 +4637,7 @@ gc_heap::verify_heap()
                 if (bCurrentBrickInvalid &&
                     (curr_brick != brick_of (heap_segment_mem (seg))))
                 {
-                    printf ("curr brick %p invalid", curr_brick);
+                    printf ("curr brick %0zX invalid", curr_brick);
                     FATAL_GC_ERROR();
                 }
 
@@ -4647,7 +4647,7 @@ gc_heap::verify_heap()
                 {
                     if (brick_table [curr_brick] == -32768)
                     {
-                        printf ("curr_brick %p for object %p set to -32768",
+                        printf ("curr_brick %0zX for object %p set to -32768",
                                 curr_brick, curr_object);
                         FATAL_GC_ERROR();
                     }
@@ -4659,7 +4659,7 @@ gc_heap::verify_heap()
                     }
                     if (i <  ((ptrdiff_t)(brick_of (heap_segment_mem (seg))) - 1))
                     {
-                        printf ("i: %p < brick_of (heap_segment_mem (seg)):%p - 1. curr_brick: %p",
+                        printf ("i: %0tX < brick_of (heap_segment_mem (seg)):%0zX - 1. curr_brick: %0zX",
                                 i, brick_of (heap_segment_mem (seg)),
                                 curr_brick);
                         FATAL_GC_ERROR();

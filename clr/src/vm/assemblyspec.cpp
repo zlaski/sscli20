@@ -594,7 +594,7 @@ void AssemblySpec::DemandFileIOPermission(LPCWSTR wszCodeBase,
     ARG_SLOT args[3] = 
     {
         ObjToArgSlot(codeBase),
-        fHavePath,
+        (ARG_SLOT)fHavePath,
         dwDemandFlag
     };
     demandPermission.Call(args);

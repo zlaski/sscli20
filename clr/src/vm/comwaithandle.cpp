@@ -112,7 +112,7 @@ void ReleaseSafeHandleFromWaitHandle(WAITHANDLEREF wh)
 typedef ObjArrayHolder<WAITHANDLEREF, AcquireSafeHandleFromWaitHandle, ReleaseSafeHandleFromWaitHandle> WaitHandleArrayHolder;
 
 
-FCIMPL4(INT32, WaitHandleNative::CorWaitOneNative, SafeHandle* safeWaitHandleUNSAFE, INT32 timeout, CLR_BOOL hasThreadAffinity, CLR_BOOL exitContext)
+FCIMPL4(INT32, WaitHandleNative::CorWaitOneNative, SafeHandle* safeWaitHandleUNSAFE, DWORD timeout, CLR_BOOL hasThreadAffinity, CLR_BOOL exitContext)
 {
     CONTRACTL {
         WRAPPER(GC_TRIGGERS);
@@ -177,7 +177,7 @@ FCIMPL4(INT32, WaitHandleNative::CorWaitOneNative, SafeHandle* safeWaitHandleUNS
 }
 FCIMPLEND
 
-FCIMPL4(INT32, WaitHandleNative::CorWaitMultipleNative, Object* waitObjectsUNSAFE, INT32 timeout, CLR_BOOL exitContext, CLR_BOOL waitForAll)
+FCIMPL4(INT32, WaitHandleNative::CorWaitMultipleNative, Object* waitObjectsUNSAFE, DWORD timeout, CLR_BOOL exitContext, CLR_BOOL waitForAll)
 {
     INT32 retVal = 0;
     OBJECTREF waitObjects = (OBJECTREF) waitObjectsUNSAFE;

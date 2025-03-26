@@ -179,7 +179,7 @@ public:
         Close ();
     }
 
-    void Create(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCTSTR lpName);
+    void Create(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName);
     void Close();
 
     BOOL IsValid() const

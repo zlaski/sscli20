@@ -333,10 +333,10 @@ FCIMPL1(Object*, AssemblyNameNative::EscapeCodeBase, StringObject* filenameUNSAF
     if(pCodeBase) {
         CQuickBytes qb2;
         DWORD dwEscaped = 1;
-        UrlEscape(pCodeBase, (LPWSTR) qb2.Ptr(), &dwEscaped, 0);
+        UrlEscapeW(pCodeBase, (LPWSTR) qb2.Ptr(), &dwEscaped, 0);
 
         LPWSTR result = (LPWSTR)qb2.AllocThrows((++dwEscaped) * sizeof(WCHAR));
-        HRESULT hr = UrlEscape(pCodeBase, result, &dwEscaped, 0);
+        HRESULT hr = UrlEscapeW(pCodeBase, result, &dwEscaped, 0);
 
         if (SUCCEEDED(hr))
             rv = COMString::NewString(result);

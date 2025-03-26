@@ -100,7 +100,7 @@ INT32 GetCharacterInfoHelper(WCHAR c, INT32 CharInfoType)
     unsigned short result=0;
 
     {
-        if (!GetStringTypeEx(LOCALE_USER_DEFAULT, CharInfoType, &(c), 1, &result)) {
+        if (!GetStringTypeExW(LOCALE_USER_DEFAULT, CharInfoType, &(c), 1, &result)) {
             _ASSERTE(!"This should not happen, verify the arguments passed to GetStringTypeEx()");
         }
     }

@@ -164,8 +164,8 @@ FCIMPL5(Object *, COMString::StringInitSBytPtrPartialEx, StringObject *thisStrin
 
     ARG_SLOT args[] = {
         PtrToArgSlot(ptr),
-        startIndex,
-        length,
+        (ARG_SLOT)startIndex,
+        (ARG_SLOT)length,
         ObjToArgSlot(ObjectToOBJECTREF(encoding)),
     };
 

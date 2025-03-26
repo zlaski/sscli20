@@ -742,8 +742,8 @@ void SecurityDeclarative::GetHPException(OBJECTREF *pThrowable, EApiCategories p
 
     ARG_SLOT arg[3] = { 
         ObjToArgSlot(hpException),
-        protectedCategories,
-        demandedCategories
+        (ARG_SLOT)protectedCategories,
+        (ARG_SLOT)demandedCategories
     };
     ctor.Call(arg);
     

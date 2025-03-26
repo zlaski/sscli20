@@ -6151,7 +6151,7 @@ void AppDomain::InitializeDomainContext(BOOL allowRedirects,
         ARG_SLOT args[4] =
         {
             ObjToArgSlot(gc.ref),
-                allowRedirects,
+                (ARG_SLOT)allowRedirects,
                 ObjToArgSlot(gc.pFilePath),
                 ObjToArgSlot(gc.pConfig),
         };
