@@ -128,6 +128,8 @@
 #define ERROR_RESOURCE_LANG_NOT_FOUND 1815L
 #define ERROR_TAG_NOT_PRESENT 2013L
 
+#ifdef USE_PAL
+
 #define WSAEINTR 10004L
 #define WSAEBADF 10009L
 #define WSAEACCES 10013L
@@ -192,6 +194,8 @@
 #define WSATRY_AGAIN 11002L
 #define WSANO_RECOVERY 11003L
 #define WSANO_DATA 11004L
+
+#endif // USE_PAL
 
 /* ENDERRORCODES - do not remove this marker, it is consumed by the palsatellite tool */
 

@@ -21,6 +21,8 @@ Abstract:
 
 --*/
 
+#ifdef USE_PAL
+
 //
 // Create the PAL API name-to-PAL_name mappings
 //
@@ -425,6 +427,9 @@ Abstract:
 #define QueryPerformanceCounter PAL_QueryPerformanceCounter
 #define QueryPerformanceFrequency PAL_QueryPerformanceFrequency
 
+#endif // USE_PAL
+
+#ifdef USE_PAL
 
 //
 // Rename PAL typedefs whose names collide with the Win32 versions
@@ -599,6 +604,8 @@ Abstract:
 
 #define fpos_t PAL_fpos_t
 
+#endif // USE_PAL
+
 #pragma warning(disable:4142) // benign redefinition of type
 //
 // Pull in the PAL API declarations - the PALEXPORT/NOTLOGGED macros will
@@ -606,6 +613,8 @@ Abstract:
 // Win32 API names
 //
 #include <rotor_pal.h>
+
+#ifdef USE_PAL
 
 // Undo the API renames
 #undef CharNextA
@@ -1010,6 +1019,9 @@ Abstract:
 #undef QueryPerformanceCounter
 #undef QueryPerformanceFrequency
 
+#endif // USE_PAL
+
+#ifdef USE_PAL
 
 // Undo the typedef renames
 #undef _EXCEPTION_RECORD
@@ -1186,6 +1198,10 @@ Abstract:
 
 #undef fpos_t
 
+#endif // USE_PAL
+
+#ifdef USE_PAL
+
 //
 // Undefine some Win32 defines that will conflict with PAL versions
 //
@@ -1271,6 +1287,9 @@ Abstract:
 #undef _I64_MAX
 #undef _UI64_MAX
 #include <vs9.h>
+
+#endif // USE_PAL
+
 //
 // Pull in standard Win32 declarations
 //

@@ -1652,7 +1652,7 @@ PAL_SetConfigurationStringW(
 
 /******************** external includes *************************/
 
-#include "ntimage.h"
+#include <ntimage.h>
 
 // ROTORTODO: Need a big-endian version of IMAGE_FILE_MACHINE_POWERPC
 #define IMAGE_FILE_MACHINE_POWERPC           0x01F0  // IBM PowerPC Little-Endian
@@ -1660,8 +1660,9 @@ PAL_SetConfigurationStringW(
 // ROTOROTODO: IMAGE_FILE_MACHINE_SPARC - just a made up value for now.
 #define IMAGE_FILE_MACHINE_SPARC             0x0800 // SPARC
 
-#include "ccombstr.h"
-#include "cstring.h"
+#include <atlcom.h>
+#include <atlstr.h>
+
 #include "sscli_version.h"
 
 #endif // RC_INVOKED

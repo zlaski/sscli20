@@ -165,9 +165,13 @@ typedef __builtin_va_list va_list;
 
 typedef char * va_list;
 
+#ifdef USE_PAL
 #define _INTSIZEOF(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )
+#endif
 
 #if _MSC_VER >= 1400
+
+#ifdef USE_PAL
 
 #ifdef  __cplusplus
 #define _ADDRESSOF(v)   ( &reinterpret_cast<const char &>(v) )
@@ -175,13 +179,17 @@ typedef char * va_list;
 #define _ADDRESSOF(v)   ( &(v) )
 #endif
 
+#endif // USE_PAL
+
 #define _crt_va_start(ap,v)  ( ap = (va_list)_ADDRESSOF(v) + _INTSIZEOF(v) )
 #define _crt_va_arg(ap,t)    ( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) )
 #define _crt_va_end(ap)      ( ap = (va_list)0 )
 
+#ifdef USE_PAL
 #define va_start _crt_va_start
 #define va_arg _crt_va_arg
 #define va_end _crt_va_end
+#endif
 
 #else  // _MSC_VER
 
@@ -2886,11 +2894,18 @@ InterlockedCompareExchange(
 
 // ROTORTODO -- need to decide whether to support InterlockedExchangeAdd on all platforms
 
-PALIMPORT
-VOID
-PALAPI
-MemoryBarrier(
-    VOID);
+#if defined _M_AMD64
+#define MemoryBarrier __faststorefence
+#elif defined _M_IA64
+#define MemoryBarrier __mf
+#elif defined _M_IX86
+__forceinline void MemoryBarrier(void) {
+    long Barrier;
+    __asm { xchg Barrier, eax }
+}
+#else
+#error Unknown target architecture
+#endif
 
 PALIMPORT
 VOID
@@ -3693,8 +3708,12 @@ struct ip_mreq {
  * Maximum queue length specifiable by listen.
  */
 #define SOMAXCONN       0x7fffffff
+
+#ifdef USE_PAL
 #define INADDR_ANY              (u_long)0x00000000
 #define INADDR_BROADCAST        (u_long)0xffffffff
+#endif
+
 #define INADDR_NONE             0xffffffff
 #define SO_MAX_MSG_SIZE   0x2003      /* maximum message size */
 #define SO_PROTOCOL_INFOA 0x2004      /* WSAPROTOCOL_INFOA structure */

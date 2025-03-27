@@ -90,7 +90,7 @@ extern "C" {
 
 #ifdef _MSC_VER
 
-#if defined(PAL_IMPLEMENTATION)
+#if defined(PAL_IMPLEMENTATION) || defined(_MT)
 #define PALIMPORT
 #else
 #define PALIMPORT   __declspec(dllimport)
